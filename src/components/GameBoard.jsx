@@ -7,17 +7,19 @@ const gameBoardArr = [
 ]
 
 
-export default function GameBoard(){
+export default function GameBoard({onSelectSquare , activePlayerSymbol}){
     const [gameBoard , setGameBoard] = useState(gameBoardArr)
 
     function handleGameBoard(rowI , colI){
         setGameBoard((prevGameBoard)=>{
            // prevGameBoard[rowI][colI] = "X"
            const updatedGameBoard = [...prevGameBoard.map((innerArray)=>[...innerArray])]
-           updatedGameBoard[rowI][colI] = 'X'
+           updatedGameBoard[rowI][colI] = activePlayerSymbol
            // to resolve mutability issue
             return updatedGameBoard;
         })
+
+        onSelectSquare(); {/* Change player automatically once a tile is clicked*/}
     }
     return( <>
         <ol id="game-board">
