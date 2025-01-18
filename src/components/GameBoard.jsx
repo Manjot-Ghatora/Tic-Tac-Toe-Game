@@ -1,26 +1,34 @@
 import { useState } from "react"
 
 const gameBoardArr = [
-    [null , null , null ] , 
+    [null, null , null ] , 
     [null, null , null ] ,
-    [null , null , null] // 3 rows
+    [null, null , null ] // 3 rows
 ]
 
 
-export default function GameBoard({onSelectSquare , activePlayerSymbol}){
-    const [gameBoard , setGameBoard] = useState(gameBoardArr)
+export default function GameBoard({onSelectSquare , turns}){
+    let gameBoard = gameBoardArr
 
-    function handleGameBoard(rowI , colI){
-        setGameBoard((prevGameBoard)=>{
-           // prevGameBoard[rowI][colI] = "X"
-           const updatedGameBoard = [...prevGameBoard.map((innerArray)=>[...innerArray])]
-           updatedGameBoard[rowI][colI] = activePlayerSymbol
-           // to resolve mutability issue
-            return updatedGameBoard;
-        })
+    for(const turn of turns){
+        const {square , player} = turn;
+        const {row , col } = square;
 
-        onSelectSquare(); {/* Change player automatically once a tile is clicked*/}
+        gameBoard[row][col] = player 
     }
+    // const [gameBoard , setGameBoard] = useState(gameBoardArr)
+
+    // function handleGameBoard(rowI , colI){
+    //     setGameBoard((prevGameBoard)=>{
+    //        // prevGameBoard[rowI][colI] = "X"
+    //        const updatedGameBoard = [...prevGameBoard.map((innerArray)=>[...innerArray])]
+    //        updatedGameBoard[rowI][colI] = activePlayerSymbol
+    //        // to resolve mutability issue
+    //         return updatedGameBoard;
+    //     })
+
+    //     onSelectSquare(); {/* Change player automatically once a tile is clicked*/}
+    // }
     return( <>
         <ol id="game-board">
         {
@@ -29,7 +37,7 @@ export default function GameBoard({onSelectSquare , activePlayerSymbol}){
                     <ol>
                         {row.map((col , colIndex)=>(
                             <li key={colIndex}><button
-                             onClick={()=>handleGameBoard(rowIndex , colIndex)}>{col}</button></li>
+                             onClick={() => onSelectSquare(rowIndex , colIndex)}>{col}</button></li>
                         ))}
                     </ol>
                 </li>
