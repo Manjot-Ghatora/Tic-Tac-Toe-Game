@@ -32,4 +32,6 @@ export default function PlayerInfo({name , symbol , isActive}){
             </li>
         </>
     )
+
+
 }
