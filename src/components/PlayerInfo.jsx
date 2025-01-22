@@ -1,11 +1,14 @@
 import { useState } from "react"
-export default function PlayerInfo({name , symbol , isActive}){
+export default function PlayerInfo({name , symbol , isActive , newName}){
 
     const [isEditing , setIsEditing] = useState(false);
     const [playerName , setPlayerName] = useState(name);
 
     function handleEditing(){
         setIsEditing((isEditing)=>!isEditing);
+        if(isEditing){
+            newName(symbol , playerName)
+        }
     }
     function handleChange(event)
     {
@@ -32,6 +35,4 @@ export default function PlayerInfo({name , symbol , isActive}){
             </li>
         </>
     )
-
-
 }
