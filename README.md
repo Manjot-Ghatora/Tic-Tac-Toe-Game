@@ -55,7 +55,7 @@ To run the game locally:
    ```bash
    npm start
    ```
-5. Open your browser and go to `http://localhost:3000` to play the game.
+5. Open your browser and go to `http://localhost:5173` to play the game.
 
 ## License
 
