@@ -412,4 +412,14 @@ ol {
     font-size: 1rem;
     margin-top: 1rem;
   }
+
+
+  #game-board button {
+    width: 5rem; /* Adjust button size for smaller screens */
+    height: 5rem;
+    font-size: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
